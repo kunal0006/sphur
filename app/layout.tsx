@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Anton, Inter, JetBrains_Mono, Space_Grotesk, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/ui/LenisProvider";
@@ -39,7 +39,12 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0e0e0e",
+};
 
 export const metadata: Metadata = {
   title: "SPHUR — Creative Agency | Web · Video · Social",

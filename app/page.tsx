@@ -11,9 +11,10 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main id="main-content" className="overflow-x-hidden w-full max-w-full">
+    <>
       <Nav />
-      <Hero />
+      <main id="main-content" className="overflow-x-hidden w-full max-w-full">
+        <Hero />
       <Manifesto />
       <section id="services">
         <Services />
@@ -28,5 +29,6 @@ export default function Home() {
       <CTA />
       <Footer />
     </main>
+    </>
   );
 }
