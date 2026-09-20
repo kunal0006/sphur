@@ -130,26 +130,22 @@ export default function Hero() {
           className="relative inline-block"
           style={{ perspective: "1000px" }}
         >
-          {/* Hindi label — layered above and overlapping top-left of SPHUR */}
+          {/* Hindi label — calligraphic heritage mark placed cleanly above SPHUR */}
           <div
-            className="absolute left-0 top-0 -translate-y-[52%] z-20 text-left pointer-events-none select-none"
+            className="absolute left-1 sm:left-2 top-0 -translate-y-[82%] sm:-translate-y-[86%] z-20 text-left pointer-events-none select-none"
             aria-label="स्फुर — SPHUR in Devanagari"
           >
             <div ref={hindiRef}>
               <span
-                className="text-ink leading-none inline-block"
+                className="text-ink leading-none inline-block select-none"
                 style={{
                   fontFamily: "'AMS Manthan', serif",
                   fontWeight: "normal",
-                  fontSize: "clamp(1.3rem, 2.8vw, 3.4rem)",
+                  fontSize: "clamp(2.2rem, 5.2vw, 5.2rem)",
                   letterSpacing: "0.02em",
                   lineHeight: 1,
-                  transform: "translateZ(18px)",
-                  /* 3D stroke depth: realistic cast shadows onto the orange hero text + stroke bevel */
-                  filter:
-                    "drop-shadow(0 2px 3px rgba(14, 14, 14, 0.5)) drop-shadow(0 6px 12px rgba(14, 14, 14, 0.32)) drop-shadow(0 14px 28px rgba(14, 14, 14, 0.18))",
-                  textShadow:
-                    "0 1px 0 rgba(255, 255, 255, 0.22), 0 -1px 0 rgba(0, 0, 0, 0.7), 1px 2px 4px rgba(0, 0, 0, 0.5)",
+                  color: "#0e0e0e",
+                  filter: "drop-shadow(0 3px 12px rgba(14, 14, 14, 0.12))",
                 }}
                 aria-hidden="true"
               >
