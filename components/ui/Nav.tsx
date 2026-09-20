@@ -15,16 +15,28 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Monitor scroll position with passive event listener for 100% reliable mobile detection
+  // Monitor scroll position with passive event listener and RAF for 100% reliable detection with Lenis
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      const scrollPos =
+        window.scrollY || document.documentElement.scrollTop || 0;
+      setScrolled(scrollPos > 40);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    let rafId: number;
+    const loop = () => {
+      handleScroll();
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Lock background scroll when mobile navigation drawer is open
