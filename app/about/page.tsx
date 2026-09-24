@@ -45,14 +45,22 @@ export default function AboutPage() {
         {/* Hero Headline */}
         <section className="mb-16 md:mb-24">
           <h1
-            className="font-display uppercase tracking-[-0.03em] text-milk leading-[0.9] mb-8 select-none max-w-5xl"
+            className="font-display uppercase tracking-[-0.03em] text-milk mb-8 select-none max-w-5xl flex flex-col gap-[10px]"
             style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.8rem)" }}
           >
-            We started Sphur because most marketing felt{" "}
-            <span className="text-milk/40 line-through decoration-orange decoration-2">
-              loud
+            <span className="block leading-[1.02]">
+              We started Sphur because
             </span>
-            , <span className="text-orange">not smart.</span>
+            <span className="block leading-[1.02]">
+              most marketing felt{" "}
+              <span className="text-milk/40 line-through decoration-orange decoration-2">
+                loud
+              </span>
+              ,
+            </span>
+            <span className="block leading-[1.02] text-orange">
+              not smart.
+            </span>
           </h1>
           <p className="font-space font-light text-milk/75 text-lg sm:text-xl md:text-2xl max-w-3xl leading-relaxed">
             Too many agencies chase trends. We chase results — with a creative edge that makes brands feel alive.
