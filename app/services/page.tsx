@@ -102,11 +102,15 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display uppercase tracking-tight text-milk leading-[1.02] mb-6 select-none max-w-5xl text-[1.65rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.2rem]"
+            className="font-display uppercase tracking-tight text-milk mb-6 select-none max-w-5xl text-[1.65rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.2rem]"
           >
-            One Team.{" "}
-            <span className="text-orange">Every Piece of Your</span>{" "}
-            Growth Puzzle.
+            <span className="block leading-[1.05]">
+              One Team.{" "}
+              <span className="text-orange">Every Piece of Your</span>
+            </span>
+            <span className="block leading-[1.05] mt-[20px]">
+              Growth Puzzle.
+            </span>
           </motion.h1>
 
           <motion.p
