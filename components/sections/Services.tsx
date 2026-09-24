@@ -7,51 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Service {
-  number: string;
-  title: string;
-  description: string;
-  capabilities: string[];
-}
-
-const SERVICES: Service[] = [
-  {
-    number: "01",
-    title: "Website Development",
-    description:
-      "Bespoke, high-performance web experiences architected from the ground up — engineered for 99+ Lighthouse scores, sub-second load times, and effortless conversion.",
-    capabilities: [
-      "Web Design & Prototyping",
-      "Next.js & React Architecture",
-      "Headless CMS & 3D WebGL",
-      "Performance & SEO Optimization",
-    ],
-  },
-  {
-    number: "02",
-    title: "Video Editing",
-    description:
-      "High-retention commercial storytelling, brand films, and motion graphics engineered for the 3-second hook and maximum audience watch time.",
-    capabilities: [
-      "Brand Films & Commercials",
-      "Motion Graphics & 3D VFX",
-      "Social-First Retention Cuts",
-      "Color Grading & Master Audio",
-    ],
-  },
-  {
-    number: "03",
-    title: "Social Media Marketing",
-    description:
-      "Strategy-led content ecosystems and paid performance campaigns that capture attention, build community trust, and compound revenue.",
-    capabilities: [
-      "Full-Funnel Content Strategy",
-      "Organic Community Management",
-      "Paid Social Campaigns (Meta & TikTok)",
-      "Growth Analytics & Attribution",
-    ],
-  },
-];
+import { HERO_SERVICES as SERVICES } from "@/data";
 
 export default function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);

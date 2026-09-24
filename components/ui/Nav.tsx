@@ -2,16 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-const NAV_LINKS = [
-  { label: "Work", href: "#work", number: "01" },
-  { label: "Services", href: "#services", number: "02" },
-  { label: "Team", href: "#team", number: "03" },
-  { label: "Process", href: "#process", number: "04" },
-];
+import { NAV_LINKS, SITE_CONFIG } from "@/data";
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -66,7 +64,13 @@ export default function Nav() {
     setIsOpen(false);
   };
 
-  const isDarkNav = scrolled || isOpen;
+  const isDarkNav =
+    scrolled ||
+    isOpen ||
+    pathname === "/team" ||
+    pathname === "/about" ||
+    pathname === "/services" ||
+    pathname === "/privacy";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
@@ -79,7 +83,7 @@ export default function Nav() {
         aria-label="Main navigation"
       >
         {/* Brand Logo */}
-        <a
+        <Link
           href="/"
           className="relative z-50 flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.02] select-none"
           aria-label="SPHUR — back to home"
@@ -97,30 +101,39 @@ export default function Nav() {
             priority
             className="h-5 sm:h-7 w-auto object-contain transition-opacity duration-300"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-8 lg:gap-10 absolute left-1/2 -translate-x-1/2">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={`group relative font-mono text-xs tracking-[0.18em] uppercase transition-colors duration-300 py-1 select-none ${
-                isDarkNav
-                  ? "text-milk/70 hover:text-milk"
-                  : "text-ink/75 hover:text-ink"
-              }`}
-            >
-              <span>{link.label}</span>
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-orange transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = link.href === pathname;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`group relative font-mono text-xs tracking-[0.18em] uppercase transition-colors duration-300 py-1 select-none ${
+                  isActive
+                    ? "text-orange font-bold"
+                    : isDarkNav
+                    ? "text-milk/70 hover:text-milk"
+                    : "text-ink/75 hover:text-ink"
+                }`}
+              >
+                <span>{link.label}</span>
+                <span
+                  className={`absolute bottom-0 left-0 h-px bg-orange transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            );
+          })}
         </div>
 
         {/* Desktop Right CTA */}
         <div className="hidden md:flex items-center">
-          <a
-            href="#cta"
+          <Link
+            href="/#cta"
             className={`group relative inline-flex items-center gap-2 px-4 py-2 font-mono text-xs tracking-wider uppercase border transition-all duration-300 rounded-full select-none ${
               isDarkNav
                 ? "border-milk/25 text-milk hover:border-orange hover:bg-orange hover:text-ink"
@@ -129,7 +142,7 @@ export default function Nav() {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-orange animate-pulse" />
             <span className="font-bold">LET&apos;S TALK</span>
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Navigation Trigger Button (>= 44x44px touch target) */}
@@ -184,49 +197,54 @@ export default function Nav() {
               <span className="font-mono text-[10px] tracking-[0.25em] text-milk/40 uppercase mb-2">
                 Navigation
               </span>
-              {NAV_LINKS.map((link, idx) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  onClick={handleLinkClick}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * idx, duration: 0.3 }}
-                  className="group flex items-center justify-between py-3.5 border-b border-milk/10 text-milk hover:text-orange transition-colors min-h-[44px]"
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span className="font-mono text-xs text-orange">
-                      {link.number}
+              {NAV_LINKS.map((link, idx) => {
+                const isActive = link.href === pathname;
+                return (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    onClick={handleLinkClick}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * idx, duration: 0.3 }}
+                    className={`group flex items-center justify-between py-3.5 border-b border-milk/10 transition-colors min-h-[44px] ${
+                      isActive ? "text-orange" : "text-milk hover:text-orange"
+                    }`}
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs text-orange">
+                        {link.number}
+                      </span>
+                      <span className="font-display text-3xl sm:text-4xl tracking-tight uppercase">
+                        {link.label}
+                      </span>
+                    </div>
+                    <span className="text-xl text-milk/40 group-hover:text-orange group-hover:translate-x-1 transition-all">
+                      →
                     </span>
-                    <span className="font-display text-3xl sm:text-4xl tracking-tight uppercase">
-                      {link.label}
-                    </span>
-                  </div>
-                  <span className="text-xl text-milk/40 group-hover:text-orange group-hover:translate-x-1 transition-all">
-                    →
-                  </span>
-                </motion.a>
-              ))}
+                  </motion.a>
+                );
+              })}
             </div>
 
             {/* Mobile Drawer Bottom Section */}
             <div className="flex flex-col gap-6 pt-6 mt-auto border-t border-milk/10">
-              <a
-                href="#cta"
+              <Link
+                href="/#cta"
                 onClick={handleLinkClick}
                 className="w-full py-4 px-6 bg-orange text-ink font-bold font-mono text-xs tracking-widest uppercase text-center flex items-center justify-center gap-2 hover:bg-orange/90 transition-colors shadow-lg shadow-orange/20 min-h-[48px]"
                 style={{ color: "#0e0e0e" }}
               >
                 <span>START A PROJECT</span>
                 <span>→</span>
-              </a>
+              </Link>
 
               <div className="flex items-center justify-between text-xs text-milk/60 font-mono">
                 <a
-                  href="mailto:hello@sphur.com"
+                  href={`mailto:${SITE_CONFIG.email}`}
                   className="hover:text-orange transition-colors"
                 >
-                  hello@sphur.com
+                  {SITE_CONFIG.email}
                 </a>
                 <span className="text-milk/30">MUMBAI · GLOBAL</span>
               </div>

@@ -18,6 +18,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-anton)", "Impact", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },

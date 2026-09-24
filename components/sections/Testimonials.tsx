@@ -1,184 +1,178 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { gsap } from "gsap";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "SPHUR didn't hand us a website. They handed us a competitive advantage. Within 60 days of launch, inbound leads tripled.",
-    author: "Mia Chen",
-    title: "CEO, Vanta Studio",
-  },
-  {
-    quote:
-      "The video team understood our brand better than we did. First cut was 90% there. That doesn't happen.",
-    author: "James Okafor",
-    title: "Creative Director, Parallax Films",
-  },
-  {
-    quote:
-      "Social used to be an afterthought. SPHUR built us a content engine. We went from 2K to 34K followers in a quarter.",
-    author: "Priya Nair",
-    title: "Founder, Oaks & Co.",
-  },
-];
+import { TESTIMONIALS } from "@/data";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const quoteRef = useRef<HTMLQuoteElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isDragging = useRef(false);
-  const dragStart = useRef(0);
-  const AUTO_ADVANCE = 5000;
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
-  const goTo = useCallback(
-    (index: number) => {
-      const next = (index + TESTIMONIALS.length) % TESTIMONIALS.length;
-      if (!quoteRef.current || !progressRef.current) return;
-
-      gsap.to(quoteRef.current, {
-        opacity: 0,
-        x: -30,
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-          setActive(next);
-          if (quoteRef.current) {
-            gsap.fromTo(
-              quoteRef.current,
-              { opacity: 0, x: 30 },
-              { opacity: 1, x: 0, duration: 0.5, ease: "power4.out" }
-            );
-          }
-        },
-      });
-
-      // Reset progress bar
-      gsap.fromTo(
-        progressRef.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: AUTO_ADVANCE / 1000,
-          ease: "none",
-          transformOrigin: "left center",
-        }
-      );
-    },
-    []
-  );
-
-  // Auto-advance
+  // Relaxed auto-advance (8.5 seconds) that pauses when hovered or interacted with
   useEffect(() => {
-    const tick = () => {
-      goTo(active + 1);
-    };
+    if (isPaused) return;
 
-    timerRef.current = setTimeout(tick, AUTO_ADVANCE);
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % TESTIMONIALS.length);
+    }, 8500);
 
-    // Initial progress bar
-    if (progressRef.current) {
-      gsap.fromTo(
-        progressRef.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: AUTO_ADVANCE / 1000,
-          ease: "none",
-          transformOrigin: "left center",
-        }
-      );
-    }
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [active, goTo]);
+  const current = TESTIMONIALS[active];
 
-  // Drag to slide
-  const onPointerDown = (e: React.PointerEvent) => {
-    isDragging.current = true;
-    dragStart.current = e.clientX;
+  const handlePrev = () => {
+    setActive((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
   };
 
-  const onPointerUp = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    const delta = e.clientX - dragStart.current;
-    if (Math.abs(delta) > 50) {
-      if (timerRef.current) clearTimeout(timerRef.current);
-      goTo(delta < 0 ? active + 1 : active - 1);
+  const handleNext = () => {
+    setActive((prev) => (prev + 1) % TESTIMONIALS.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (deltaX > 40) {
+      handlePrev();
+    } else if (deltaX < -40) {
+      handleNext();
     }
+    touchStartX.current = null;
   };
 
   return (
     <section
-      className="bg-ink py-24 md:py-36 px-6 md:px-12 lg:px-20 overflow-hidden"
+      id="testimonials"
+      className="bg-ink py-24 sm:py-32 md:py-40 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden relative border-t border-milk/5 select-none"
       aria-label="Client testimonials"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      <div className="font-mono text-milk/20 text-xs tracking-[0.15em] uppercase mb-16">
-        (04) — What They Say
-      </div>
-
-      <div
-        className="cursor-grab active:cursor-grabbing select-none"
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
-      >
-        <blockquote
-          ref={quoteRef}
-          className="font-display text-milk leading-[1.05] tracking-[-0.02em] uppercase mb-12"
-          style={{ fontSize: "clamp(1.8rem, 4vw, 4.5rem)" }}
-        >
-          &ldquo;{TESTIMONIALS[active].quote}&rdquo;
-        </blockquote>
-
-        <div className="flex items-center gap-4">
-          <div className="w-8 h-px bg-orange" />
-          <div>
-            <p className="font-body text-milk text-sm font-medium">
-              {TESTIMONIALS[active].author}
-            </p>
-            <p className="font-mono text-milk/70 text-xs tracking-[0.1em]">
-              {TESTIMONIALS[active].title}
-            </p>
+      <div className="max-w-6xl mx-auto w-full">
+        {/* Section Header */}
+        <div className="mb-10 sm:mb-14">
+          <div className="flex items-center gap-2 mb-4 font-mono text-orange text-xs tracking-[0.2em] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange animate-pulse" />
+            <span>(05) // CLIENT WORDS</span>
           </div>
-        </div>
-      </div>
 
-      {/* Navigation dots + progress bar */}
-      <div className="mt-12 flex items-center gap-6">
-        <div className="flex items-center -ml-3">
-          {TESTIMONIALS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                if (timerRef.current) clearTimeout(timerRef.current);
-                goTo(i);
-              }}
-              className="p-3.5 min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange rounded-full"
-              aria-label={`Go to testimonial ${i + 1}`}
-              aria-current={i === active ? "true" : undefined}
-            >
-              <span
-                className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 block ${
-                  i === active ? "bg-orange scale-110" : "bg-milk/30 hover:bg-milk/60"
+          <h2
+            className="font-display uppercase tracking-[-0.02em] text-milk leading-[0.95]"
+            style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)" }}
+          >
+            Don&apos;t take our word for it.
+          </h2>
+        </div>
+
+        {/* Company Quick Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-10 pb-4 border-b border-milk/10">
+          {TESTIMONIALS.map((item, idx) => {
+            const isCurrent = idx === active;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActive(idx)}
+                className={`px-3 sm:px-4 py-1.5 rounded-full font-mono text-xs tracking-wider uppercase transition-all duration-300 ${
+                  isCurrent
+                    ? "bg-orange text-ink font-bold shadow-md shadow-orange/20"
+                    : "bg-milk/5 text-milk/60 hover:text-milk hover:bg-milk/10 border border-milk/10"
                 }`}
-              />
-            </button>
-          ))}
+                style={isCurrent ? { color: "#0E0E0E" } : undefined}
+                aria-pressed={isCurrent}
+              >
+                {item.company}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Progress bar */}
-        <div className="flex-1 h-px bg-milk/10 relative overflow-hidden">
-          <div
-            ref={progressRef}
-            className="absolute inset-y-0 left-0 w-full bg-orange"
-            style={{ transformOrigin: "left center", transform: "scaleX(0)" }}
-          />
+        {/* Testimonial Quote Display Box */}
+        <div className="min-h-[220px] sm:min-h-[200px] flex flex-col justify-between mb-10 relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="space-y-6"
+            >
+              <blockquote className="font-space font-light text-milk/95 text-lg sm:text-2xl md:text-3xl lg:text-[2rem] leading-relaxed tracking-tight">
+                &ldquo;{current.quote}&rdquo;
+              </blockquote>
+
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-2">
+                <span className="font-mono text-xs sm:text-sm text-milk/60 uppercase tracking-wider">
+                  — {current.author}, {current.role}
+                </span>
+                <span className="font-mono text-xs sm:text-sm text-milk/30 hidden sm:inline">
+                  •
+                </span>
+                <span className="font-mono text-xs sm:text-sm text-orange font-bold uppercase tracking-wider">
+                  {current.company}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Footer Controls: Pagination Counter + Prev/Next Controls + CTA */}
+        <div className="pt-6 border-t border-milk/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            {/* Number indicator */}
+            <div className="font-mono text-xs text-milk/40 tracking-widest uppercase">
+              <span className="text-orange font-bold">0{active + 1}</span>
+              {" / "}
+              <span>0{TESTIMONIALS.length}</span>
+            </div>
+
+            {/* Prev / Next Buttons */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrev}
+                className="w-10 h-10 rounded-full border border-milk/15 flex items-center justify-center text-milk/70 hover:text-milk hover:border-orange hover:bg-orange/10 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                className="w-10 h-10 rounded-full border border-milk/15 flex items-center justify-center text-milk/70 hover:text-milk hover:border-orange hover:bg-orange/10 transition-colors"
+                aria-label="Next testimonial"
+              >
+                →
+              </button>
+            </div>
+
+            {/* Reading Status Pill */}
+            <span className="font-mono text-[10px] uppercase tracking-widest text-milk/30 hidden md:inline">
+              {isPaused ? "[ PAUSED ]" : "[ AUTO-CYCLE ]"}
+            </span>
+          </div>
+
+          {/* CTA: Start Your Project (links to contact/onboarding form) */}
+          <div>
+            <Link
+              href="/#cta"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-orange text-ink font-mono font-bold text-xs uppercase tracking-widest hover:bg-orange/90 hover:scale-[1.02] transition-all shadow-lg shadow-orange/20"
+              style={{ color: "#0E0E0E" }}
+            >
+              <span>Start Your Project</span>
+              <span className="text-sm">→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

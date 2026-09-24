@@ -15,8 +15,8 @@ export default function Preloader() {
       sessionStorage.getItem("sphur-preloaded") ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      setVisible(false);
-      return;
+      const rafId = requestAnimationFrame(() => setVisible(false));
+      return () => cancelAnimationFrame(rafId);
     }
 
     const DURATION = 500; // ~0.5s snappy countdown
@@ -60,7 +60,11 @@ export default function Preloader() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-milk uppercase tracking-[-0.03em] text-[clamp(3rem,12vw,8rem)] leading-none"
+              className="text-milk uppercase tracking-[-0.04em] text-[clamp(3rem,12vw,8rem)] leading-none select-none"
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontWeight: 900,
+              }}
             >
               SPHUR
             </motion.div>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Inter, JetBrains_Mono, Space_Grotesk, Cormorant_Garamond } from "next/font/google";
+import { Anton, Inter, JetBrains_Mono, Space_Grotesk, Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/ui/LenisProvider";
 import Preloader from "@/components/ui/Preloader";
@@ -9,6 +9,13 @@ const anton = Anton({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-anton",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  weight: ["800", "900"],
+  subsets: ["latin"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -124,7 +131,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${anton.variable} ${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${cormorant.variable}`}
+      className={`${anton.variable} ${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${cormorant.variable} ${montserrat.variable}`}
     >
       <head>
         <script

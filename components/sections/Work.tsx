@@ -8,101 +8,7 @@ import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Project {
-  id: string;
-  name: string;
-  category: string;
-  year: string;
-  deliverable: string;
-  image: string;
-  imageAlt: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: "01",
-    name: "Vanta Studio",
-    category: "Website Development",
-    year: "2024",
-    deliverable: "Next.js · 3D WebGL · Headless CMS",
-    image:
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80",
-    imageAlt: "Vanta Studio bespoke website project",
-  },
-  {
-    id: "02",
-    name: "Parallax Films",
-    category: "Video Editing",
-    year: "2024",
-    deliverable: "Brand Film · Color Grade · Sound Design",
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=900&q=80",
-    imageAlt: "Parallax Films cinematic commercial production",
-  },
-  {
-    id: "03",
-    name: "Oaks & Co.",
-    category: "Social Media",
-    year: "2023",
-    deliverable: "Content Strategy · Paid Social · 3.4M Reach",
-    image:
-      "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=900&q=80",
-    imageAlt: "Oaks & Co. organic & paid social system",
-  },
-  {
-    id: "04",
-    name: "Meridian Brand",
-    category: "Website + Video",
-    year: "2023",
-    deliverable: "Full Rebrand · E-Commerce · Launch Film",
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?w=900&q=80",
-    imageAlt: "Meridian Brand integrated digital identity",
-  },
-  {
-    id: "05",
-    name: "Lumen Collective",
-    category: "Full Service",
-    year: "2022",
-    deliverable: "Web Platform · Content Engine · Community",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&q=80",
-    imageAlt: "Lumen Collective multidisciplinary showcase",
-  },
-];
-
-interface FilterCategory {
-  id: string;
-  label: string;
-  count: string;
-}
-
-const CATEGORIES: FilterCategory[] = [
-  { id: "ALL", label: "ALL", count: "05" },
-  { id: "WEBSITES", label: "WEBSITES", count: "03" },
-  { id: "VIDEO", label: "VIDEO", count: "03" },
-  { id: "SOCIAL", label: "SOCIAL", count: "02" },
-];
-
-const isProjectMatch = (project: Project, filter: string) => {
-  if (filter === "ALL") return true;
-  if (filter === "WEBSITES")
-    return (
-      project.category.toLowerCase().includes("website") ||
-      project.category.toLowerCase().includes("full service")
-    );
-  if (filter === "VIDEO")
-    return (
-      project.category.toLowerCase().includes("video") ||
-      project.category.toLowerCase().includes("full service")
-    );
-  if (filter === "SOCIAL")
-    return (
-      project.category.toLowerCase().includes("social") ||
-      project.category.toLowerCase().includes("full service")
-    );
-  return true;
-};
+import { PROJECTS, PROJECT_CATEGORIES as CATEGORIES, isProjectMatch } from "@/data";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -317,7 +223,7 @@ export default function Work() {
               ref={counterRef}
               className="text-milk font-semibold min-w-[54px]"
             >
-              01 / 05
+              01 / 06
             </span>
 
             {/* Scrub progress track */}
@@ -369,9 +275,9 @@ export default function Work() {
                   alt={project.imageAlt}
                   fill
                   className="work-card-img object-cover transition-transform duration-700 ease-entrance group-hover:scale-105"
-                  sizes="(max-width: 768px) 320px, (max-width: 1200px) 440px, 500px"
-                  priority={project.id === "01"}
-                  loading={project.id === "01" ? "eager" : "lazy"}
+                  sizes="(max-width: 768px) 380px, (max-width: 1200px) 490px, 600px"
+                  priority
+                  loading="eager"
                 />
 
                 {/* Dark gradient for typographic legibility */}
@@ -380,11 +286,6 @@ export default function Work() {
                 {/* Floating category badge with backdrop blur */}
                 <div className="absolute top-4 left-4 font-mono text-[11px] tracking-widest uppercase bg-ink/75 backdrop-blur-md border border-milk/15 text-milk px-3.5 py-1.5 select-none">
                   {project.category}
-                </div>
-
-                {/* Floating release year */}
-                <div className="absolute top-4 right-4 font-mono text-[11px] tracking-widest text-milk/70 bg-ink/75 backdrop-blur-md px-3 py-1.5 select-none">
-                  {project.year}
                 </div>
 
                 {/* Deliverable pills at bottom of image */}
@@ -400,7 +301,7 @@ export default function Work() {
                 <div>
                   <div className="flex items-center gap-2 font-mono text-orange text-[11px] tracking-[0.16em] uppercase font-semibold mb-1">
                     <span>{project.id}</span>
-                    <span className="text-milk/30">//</span>
+                    <span className="text-milk/30">{"//"}</span>
                     <span>CASE STUDY</span>
                   </div>
                   <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-milk uppercase tracking-tight group-hover:text-orange transition-colors duration-300">
@@ -455,7 +356,7 @@ export default function Work() {
       <div className="px-6 md:px-12 lg:px-20 py-4 border-t border-milk/10 flex items-center justify-between font-mono text-[11px] tracking-[0.18em] uppercase text-milk/70">
         <div className="flex items-center gap-3">
           <span className="w-1.5 h-1.5 rounded-full bg-milk/40" />
-          <span>05 ARCHIVED CASE STUDIES // DELIVERED AT ZERO COMPROMISE</span>
+          <span>06 ARCHIVED CASE STUDIES // DELIVERED AT ZERO COMPROMISE</span>
         </div>
         <div className="hidden md:block text-milk/30">
           <span>SPHUR WORK GALLERY</span>

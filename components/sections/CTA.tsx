@@ -54,10 +54,27 @@ export default function CTA() {
   const [isDragging, setIsDragging] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [maxDistance, setMaxDistance] = useState(300);
 
   // Pointer drag tracking refs
   const dragStartX = useRef(0);
   const maxDistanceRef = useRef(300);
+
+  // Measure slider dimensions outside of render
+  useEffect(() => {
+    const updateDistance = () => {
+      if (trackRef.current && knobRef.current) {
+        const trackRect = trackRef.current.getBoundingClientRect();
+        const knobRect = knobRef.current.getBoundingClientRect();
+        const dist = Math.max(100, trackRect.width - knobRect.width - 8);
+        setMaxDistance(dist);
+        maxDistanceRef.current = dist;
+      }
+    };
+    updateDistance();
+    window.addEventListener("resize", updateDistance);
+    return () => window.removeEventListener("resize", updateDistance);
+  }, []);
 
   // Modal form states
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -382,9 +399,7 @@ export default function CTA() {
               } ${isDragging ? "scale-105" : ""}`}
               style={{
                 transform: `translateX(${
-                  isComplete
-                    ? (trackRef.current?.offsetWidth || 400) - 64
-                    : dragProgress * (maxDistanceRef.current || 300)
+                  isComplete ? maxDistance : dragProgress * maxDistance
                 }px)`,
                 transition: isDragging ? "none" : "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
               }}

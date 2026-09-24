@@ -2,13 +2,9 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://instagram.com/sphur" },
-  { label: "Twitter", href: "https://twitter.com/sphur" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/sphur" },
-  { label: "Behance", href: "https://behance.net/sphur" },
-];
+import { SOCIAL_LINKS, SITE_CONFIG } from "@/data";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!";
 
@@ -87,14 +83,14 @@ export default function Footer() {
       role="contentinfo"
     >
       {/* Big email */}
-      <div className="mb-16 md:mb-20">
+      <div className="mb-16 md:mb-20 overflow-hidden">
         <a
-          href="mailto:hello@sphur.com"
-          className="font-display text-milk leading-[0.85] tracking-[-0.03em] uppercase hover:text-orange transition-colors duration-300 block"
-          style={{ fontSize: "clamp(2rem, 7vw, 8rem)" }}
-          aria-label="Email SPHUR at hello@sphur.com"
+          href={`mailto:${SITE_CONFIG.email}`}
+          className="font-display text-milk leading-[0.85] tracking-[-0.03em] uppercase hover:text-orange transition-colors duration-300 block break-words max-w-full"
+          style={{ fontSize: "clamp(1.35rem, 6.8vw, 8rem)" }}
+          aria-label={`Email SPHUR at ${SITE_CONFIG.email}`}
         >
-          hello@sphur.com
+          {SITE_CONFIG.email}
         </a>
       </div>
 
@@ -102,7 +98,7 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         {/* Left: brand logo + location */}
         <div className="space-y-3">
-          <a
+          <Link
             href="/"
             className="inline-block transition-transform duration-300 hover:scale-[1.03] select-none"
             aria-label="SPHUR — back to top"
@@ -114,13 +110,13 @@ export default function Footer() {
               height={26}
               className="h-5 sm:h-6 w-auto object-contain"
             />
-          </a>
+          </Link>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-milk/70 text-xs tracking-[0.1em] uppercase">
             <span>Creative Agency — Worldwide — © {new Date().getFullYear()}</span>
             <span className="text-milk/30">•</span>
-            <a href="/privacy" className="hover:text-orange transition-colors duration-200 underline underline-offset-4">
+            <Link href="/privacy" className="hover:text-orange transition-colors duration-200 underline underline-offset-4">
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
 

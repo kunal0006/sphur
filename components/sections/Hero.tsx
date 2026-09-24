@@ -162,8 +162,12 @@ export default function Hero() {
           <h1 className="overflow-hidden">
             <span className="sr-only">SPHUR — Creative Agency</span>
             <span
-              className="font-display text-orange leading-[0.85] tracking-[-0.03em] uppercase select-none block"
-              style={{ fontSize: "var(--fs-hero)" }}
+              className="text-orange leading-[0.85] tracking-[-0.04em] uppercase select-none block"
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontWeight: 900,
+                fontSize: "var(--fs-hero)",
+              }}
               aria-hidden="true"
             >
               {LETTERS.map((letter, i) => (

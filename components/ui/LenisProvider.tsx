@@ -38,20 +38,34 @@ export default function LenisProvider({
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // 3. Smooth anchor link interceptor (handles #work, #services, #contact, etc.)
+    // 3. Smooth anchor link interceptor (handles #work, /#work, etc.)
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
       const href = target.getAttribute("href");
-      if (href && href.startsWith("#") && href.length > 1) {
-        const targetEl = document.querySelector(href);
-        if (targetEl) {
-          e.preventDefault();
-          lenis.scrollTo(targetEl as HTMLElement, {
-            offset: 0,
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
+      if (href) {
+        let selector = "";
+        if (href.startsWith("#") && href.length > 1) {
+          selector = href;
+        } else if (
+          href.startsWith("/#") &&
+          typeof window !== "undefined" &&
+          window.location.pathname === "/"
+        ) {
+          selector = href.slice(1);
+        }
+
+        if (selector) {
+          const targetEl = document.querySelector(selector);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl as HTMLElement, {
+              offset: 0,
+              duration: 1.2,
+              easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            });
+            window.history.pushState(null, "", selector);
+          }
         }
       }
     };
