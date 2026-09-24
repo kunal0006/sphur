@@ -12,7 +12,7 @@ export const SITE_CONFIG: SiteConfig = {
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: "Instagram", href: "https://instagram.com/sphur" },
+  { label: "Instagram", href: "https://www.instagram.com/sphur.in?stkn=bTV0NTl6dnB4cjkw" },
   { label: "Twitter", href: "https://twitter.com/sphur" },
   { label: "LinkedIn", href: "https://linkedin.com/company/sphur" },
   { label: "Behance", href: "https://behance.net/sphur" },
