@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/data";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — SPHUR Creative Agency",
@@ -107,10 +108,10 @@ export default function PrivacyPage() {
             </p>
             <div className="pt-2">
               <a
-                href="mailto:hello@sphur.com"
+                href={`mailto:${SITE_CONFIG.email}`}
                 className="font-mono text-orange text-sm tracking-[0.15em] uppercase hover:underline"
               >
-                hello@sphur.com
+                {SITE_CONFIG.email}
               </a>
             </div>
           </section>

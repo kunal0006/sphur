@@ -3,6 +3,7 @@ import { Anton, Inter, JetBrains_Mono, Space_Grotesk, Cormorant_Garamond, Montse
 import "./globals.css";
 import LenisProvider from "@/components/ui/LenisProvider";
 import Preloader from "@/components/ui/Preloader";
+import { SITE_CONFIG } from "@/data";
 
 
 const anton = Anton({
@@ -107,7 +108,7 @@ const jsonLd = {
   url: "https://sphur.com",
   logo: "https://sphur.com/images/sphur-logo-orange.png",
   image: "https://sphur.com/og-image.jpg",
-  email: "hello@sphur.com",
+  email: SITE_CONFIG.email,
   sameAs: [
     "https://instagram.com/sphur",
     "https://twitter.com/sphur",

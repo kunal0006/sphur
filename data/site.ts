@@ -4,7 +4,7 @@ export const SITE_CONFIG: SiteConfig = {
   name: "SPHUR",
   legalName: "SPHUR Creative Agency",
   domain: "sphur.agency",
-  email: "hello@sphur.agency",
+  email: "Info.sphur@gmail.com",
   phone: "+91 98765 43210",
   location: "New Delhi, India",
   description:

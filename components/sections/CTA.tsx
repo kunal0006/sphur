@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
+import { SITE_CONFIG } from "@/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,7 +112,7 @@ export default function CTA() {
       `Budget Range:\n\n` +
       `Project Overview & Objectives:\n`
     );
-    return `mailto:hello@sphur.com?subject=${subject}&body=${body}`;
+    return `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
   }, []);
 
   const triggerCompletion = useCallback(() => {
@@ -196,11 +197,11 @@ export default function CTA() {
   // One-click copy email
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("hello@sphur.com");
+      await navigator.clipboard.writeText(SITE_CONFIG.email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      window.location.href = "mailto:hello@sphur.com";
+      window.location.href = `mailto:${SITE_CONFIG.email}`;
     }
   };
 
@@ -443,7 +444,7 @@ export default function CTA() {
               className="hover:text-orange transition-all cursor-pointer flex items-center gap-2 py-1.5 px-3 rounded-none border border-milk/15 hover:border-orange/60 bg-milk/[0.02] hover:bg-orange/5 hover:shadow-[0_4px_16px_rgba(236,94,39,0.2)]"
               title="Click to copy email address"
             >
-              <span>hello@sphur.com</span>
+              <span>{SITE_CONFIG.email}</span>
               <span className="text-orange text-[10px] font-bold">
                 {copied ? "✓ COPIED" : "[COPY]"}
               </span>
