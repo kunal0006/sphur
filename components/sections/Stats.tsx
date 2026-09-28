@@ -95,7 +95,7 @@ export default function Stats() {
             className="text-center md:text-left"
           >
             <div
-              className="font-display text-milk leading-[0.85] tracking-[-0.03em] mb-4 select-none"
+              className="font-display text-milk leading-none tracking-[0.01em] mb-4 select-none"
               style={{ fontSize: "clamp(3.2rem, 8vw, 7.5rem)" }}
               aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
             >

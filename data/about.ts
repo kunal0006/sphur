@@ -3,7 +3,7 @@ import { AboutMetric, AboutPrinciple, SectorItem } from "@/types";
 export const ABOUT_NUMBERS: AboutMetric[] = [
   { value: "3+", label: "Years of Craft", desc: "Refining identity & speed" },
   { value: "60+", label: "Projects Delivered", desc: "Web, video, and social" },
-  { value: "10", label: "Disciplines, One Team", desc: "Zero handoff friction" },
+  { value: "9", label: "Disciplines, One Team", desc: "Zero handoff friction" },
   { value: "95%", label: "Client Retention Rate", desc: "Long-term compounding" },
 ];
 

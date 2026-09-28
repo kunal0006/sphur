@@ -66,7 +66,7 @@ export default function Testimonials() {
           </div>
 
           <h2
-            className="font-display uppercase tracking-[-0.02em] text-milk leading-[0.95]"
+            className="font-display uppercase tracking-[0.01em] text-milk leading-[1.1]"
             style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)" }}
           >
             Don&apos;t take our word for it.

@@ -162,7 +162,7 @@ export default function Hero() {
           <h1 className="overflow-hidden">
             <span className="sr-only">SPHUR — Creative Agency</span>
             <span
-              className="text-orange leading-[0.85] tracking-[-0.04em] uppercase select-none block"
+              className="text-orange leading-none tracking-[-0.02em] uppercase select-none block"
               style={{
                 fontFamily: "var(--font-montserrat), sans-serif",
                 fontWeight: 900,

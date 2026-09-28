@@ -7,16 +7,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { DEPARTMENTS, SITE_CONFIG } from "@/data";
 
-const CATEGORIES = [
-  { id: "all", label: "All Disciplines", count: 10 },
-  { id: "creative", label: "Creative & Design", count: 4 },
-  { id: "production", label: "Production & Talent", count: 2 },
-  { id: "strategy", label: "Strategy & Operations", count: 3 },
-  { id: "technical", label: "Web Engineering", count: 1 },
+const CATEGORY_TABS = [
+  { id: "all", label: "All Disciplines" },
+  { id: "creative", label: "Creative & Design" },
+  { id: "production", label: "Production & Talent" },
+  { id: "strategy", label: "Strategy & Operations" },
+  { id: "technical", label: "Web Engineering" },
 ];
 
 export default function TeamPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const categories = CATEGORY_TABS.map((cat) => ({
+    ...cat,
+    count:
+      cat.id === "all"
+        ? DEPARTMENTS.length
+        : DEPARTMENTS.filter((d) => d.category === cat.id).length,
+  }));
 
   const filteredDepts =
     selectedCategory === "all"
@@ -61,7 +69,7 @@ export default function TeamPage() {
         {/* Hero Headline */}
         <div className="mb-10 md:mb-14">
           <h1
-            className="font-display uppercase tracking-[-0.03em] text-milk leading-[0.88] mb-6 select-none"
+            className="font-display uppercase tracking-[0.01em] text-milk leading-[1.08] mb-6 select-none"
             style={{ fontSize: "clamp(2.5rem, 6.5vw, 6rem)" }}
           >
             The People Behind <span className="text-orange">The Flash</span>
@@ -86,7 +94,7 @@ export default function TeamPage() {
               Disciplines
             </div>
             <div className="font-display text-2xl sm:text-3xl text-milk">
-              10 <span className="text-orange text-lg">Wings</span>
+              {DEPARTMENTS.length} <span className="text-orange text-lg">Wings</span>
             </div>
           </div>
           <div>
@@ -110,7 +118,7 @@ export default function TeamPage() {
         {/* Interactive Discipline Filter */}
         <div className="mb-10 sm:mb-12 overflow-x-auto pb-2 scrollbar-none">
           <div className="flex items-center gap-2 sm:gap-3 min-w-max">
-            {CATEGORIES.map((cat) => {
+            {categories.map((cat) => {
               const isActive = selectedCategory === cat.id;
               return (
                 <button
@@ -168,7 +176,7 @@ export default function TeamPage() {
                   </div>
 
                   {/* Department Name */}
-                  <h2 className="font-display text-2xl sm:text-3xl text-milk group-hover:text-orange transition-colors duration-300 mb-2 leading-tight">
+                  <h2 className="font-display text-2xl sm:text-3xl text-milk group-hover:text-orange transition-colors duration-300 mb-2 leading-[1.15] tracking-[0.01em]">
                     {dept.name}
                   </h2>
 
@@ -216,7 +224,7 @@ export default function TeamPage() {
             <span className="font-mono text-xs tracking-[0.2em] text-orange uppercase font-bold block mb-3">
               [ GROW WITH US ]
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-milk uppercase tracking-tight mb-3 leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl text-milk uppercase tracking-[0.01em] mb-3 leading-[1.15]">
               Want To Flash Into Consciousness?
             </h2>
             <p className="font-space font-light text-milk/70 text-sm sm:text-base leading-relaxed">

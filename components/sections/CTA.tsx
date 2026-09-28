@@ -279,7 +279,7 @@ export default function CTA() {
       <h2
         ref={headlineRef}
         id="cta-heading"
-        className="font-display text-milk leading-[0.85] tracking-[-0.03em] uppercase select-none"
+        className="font-display text-milk leading-[1.02] tracking-[0.01em] uppercase select-none"
         style={{ fontSize: "var(--fs-hero)", marginBottom: "32px" }}
       >
         Let&apos;s
@@ -500,7 +500,7 @@ export default function CTA() {
               </div>
               <h2
                 id="brief-modal-title"
-                className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-milk mb-2"
+                className="font-display text-2xl sm:text-3xl uppercase tracking-[0.01em] leading-[1.15] text-milk mb-2"
               >
                 Initiate Project Brief
               </h2>
@@ -513,7 +513,7 @@ export default function CTA() {
                   <div className="w-12 h-12 bg-orange/20 border border-orange text-orange rounded-full flex items-center justify-center mx-auto text-xl font-bold">
                     ✓
                   </div>
-                  <h3 className="font-display text-2xl uppercase text-milk">
+                  <h3 className="font-display text-2xl uppercase tracking-[0.01em] leading-[1.15] text-milk">
                     Brief Dispatched
                   </h3>
                   <p className="font-mono text-xs text-milk/70 max-w-md mx-auto leading-relaxed">

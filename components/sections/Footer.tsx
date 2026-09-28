@@ -86,7 +86,7 @@ export default function Footer() {
       <div className="mb-16 md:mb-20 overflow-hidden">
         <a
           href={`mailto:${SITE_CONFIG.email}`}
-          className="font-display text-milk leading-[0.85] tracking-[-0.03em] uppercase hover:text-orange transition-colors duration-300 block break-words max-w-full"
+          className="font-display text-milk leading-[1.05] tracking-[0.01em] uppercase hover:text-orange transition-colors duration-300 block break-words max-w-full"
           style={{ fontSize: "clamp(1.35rem, 6.8vw, 8rem)" }}
           aria-label={`Email SPHUR at ${SITE_CONFIG.email}`}
         >

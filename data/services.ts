@@ -20,6 +20,7 @@ export const HERO_SERVICES: HeroService[] = [
       "High-retention commercial storytelling, brand films, and motion graphics engineered for the 3-second hook and maximum audience watch time.",
     capabilities: [
       "Brand Films & Commercials",
+      "On-Camera & Talent Direction",
       "Motion Graphics & 3D VFX",
       "Social-First Retention Cuts",
       "Color Grading & Master Audio",
@@ -112,6 +113,7 @@ export const DETAILED_SERVICES: DetailedService[] = [
       "Commercial Photography",
       "High-Retention Reels & Shorts",
       "Brand Films & Video Production",
+      "On-Camera & Talent Direction",
       "Voice-Led Copywriting",
     ],
   },

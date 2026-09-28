@@ -155,7 +155,7 @@ export default function Work() {
               </div>
               <h2
                 id="work-heading"
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-milk uppercase tracking-tight leading-none"
+                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-milk uppercase tracking-[0.01em] leading-[1.1]"
               >
                 Selected Projects
               </h2>
@@ -304,7 +304,7 @@ export default function Work() {
                     <span className="text-milk/30">{"//"}</span>
                     <span>CASE STUDY</span>
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-milk uppercase tracking-tight group-hover:text-orange transition-colors duration-300">
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-milk uppercase tracking-[0.01em] leading-[1.15] group-hover:text-orange transition-colors duration-300">
                     {project.name}
                   </h3>
                 </div>
@@ -328,7 +328,7 @@ export default function Work() {
                 <span className="w-1.5 h-1.5 rounded-full bg-orange animate-ping" />
                 <span>(03) — NEXT UP</span>
               </div>
-              <h3 className="font-display text-3xl md:text-4xl text-milk uppercase tracking-tight mb-4">
+              <h3 className="font-display text-3xl md:text-4xl text-milk uppercase tracking-[0.01em] leading-[1.15] mb-4">
                 How We Deliver
               </h3>
               <p className="font-body text-sm text-milk/60 leading-relaxed max-w-[28ch]">

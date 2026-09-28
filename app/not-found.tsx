@@ -41,7 +41,7 @@ export default function NotFound() {
           <span className="w-1.5 h-1.5 rounded-full bg-orange animate-pulse" />
           <span>SIGNAL DISRUPTED</span>
         </div>
-        <h1 className="font-display text-[clamp(4.5rem,14vw,12rem)] leading-[0.82] tracking-[-0.04em] uppercase text-milk mb-6">
+        <h1 className="font-display text-[clamp(4.5rem,14vw,12rem)] leading-none tracking-normal uppercase text-milk mb-6">
           404.
         </h1>
         <p className="font-body text-base sm:text-lg md:text-xl text-milk/80 max-w-xl leading-relaxed mb-10">

@@ -45,20 +45,20 @@ export default function AboutPage() {
         {/* Hero Headline */}
         <section className="mb-16 md:mb-24">
           <h1
-            className="font-display uppercase tracking-[-0.03em] text-milk mb-8 select-none max-w-5xl flex flex-col gap-[10px]"
+            className="font-display uppercase tracking-[0.01em] text-milk mb-8 select-none max-w-5xl flex flex-col gap-3 sm:gap-4"
             style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.8rem)" }}
           >
-            <span className="block leading-[1.02]">
+            <span className="block leading-[1.08]">
               We started Sphur because
             </span>
-            <span className="block leading-[1.02]">
+            <span className="block leading-[1.08]">
               most marketing felt{" "}
               <span className="text-milk/40 line-through decoration-orange decoration-2">
                 loud
               </span>
               ,
             </span>
-            <span className="block leading-[1.02] text-orange">
+            <span className="block leading-[1.08] text-orange">
               not smart.
             </span>
           </h1>
@@ -140,7 +140,7 @@ export default function AboutPage() {
                     0{idx + 1} {"//"} METRIC
                   </div>
                   <div
-                    className="font-display text-milk leading-none tracking-[-0.03em] mb-3 select-none"
+                    className="font-display text-milk leading-none tracking-[0.01em] mb-3 select-none"
                     style={{ fontSize: "clamp(3.5rem, 6vw, 5.5rem)" }}
                   >
                     {item.value}
@@ -180,7 +180,7 @@ export default function AboutPage() {
                   <div className="font-mono text-xs tracking-[0.2em] text-orange font-bold mb-4">
                     {principle.number} {"//"} PRINCIPLE
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl text-milk group-hover:text-orange transition-colors duration-300 mb-2 leading-tight uppercase">
+                  <h3 className="font-display text-2xl sm:text-3xl text-milk group-hover:text-orange transition-colors duration-300 mb-2 leading-[1.15] tracking-[0.01em] uppercase">
                     {principle.title}
                   </h3>
                   <p className="font-space italic text-orange/90 text-sm mb-4">
@@ -205,7 +205,7 @@ export default function AboutPage() {
           </div>
 
           <div className="p-8 sm:p-12 rounded-3xl bg-milk/[0.02] border border-milk/15 mb-8">
-            <h2 className="font-display text-2xl sm:text-4xl text-milk uppercase tracking-tight mb-4 max-w-3xl leading-tight">
+            <h2 className="font-display text-2xl sm:text-4xl text-milk uppercase tracking-[0.01em] mb-4 max-w-3xl leading-[1.15]">
               Businesses ready to stop blending in and start standing out.
             </h2>
             <p className="font-space font-light text-milk/70 text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
@@ -293,7 +293,7 @@ export default function AboutPage() {
             <span className="font-mono text-xs tracking-[0.2em] text-orange uppercase font-bold block mb-3">
               [ START A CONVERSATION ]
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-milk uppercase tracking-tight mb-3 leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl text-milk uppercase tracking-[0.01em] mb-3 leading-[1.15]">
               Ready To Flash Into Consciousness?
             </h2>
             <p className="font-space font-light text-milk/70 text-sm sm:text-base leading-relaxed">

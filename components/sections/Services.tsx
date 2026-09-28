@@ -58,7 +58,7 @@ export default function Services() {
       <div className="px-6 md:px-12 lg:px-20 mb-16 md:mb-20 overflow-hidden">
         <h2
           ref={headingRef}
-          className="font-display text-[clamp(2.5rem,7vw,7rem)] leading-[0.85] tracking-[-0.03em] uppercase text-milk max-w-[14ch]"
+          className="font-display text-[clamp(2.5rem,7vw,7rem)] leading-[1.08] tracking-[0.01em] uppercase text-milk max-w-[14ch]"
           style={{ clipPath: "inset(0 0 0% 0)" }}
         >
           Three disciplines. One standard.
@@ -96,7 +96,7 @@ export default function Services() {
                     {service.number}
                   </span>
                   <span
-                    className={`font-display text-[clamp(1.5rem,4.2vw,5rem)] leading-none tracking-[-0.02em] uppercase transition-colors duration-300 break-words ${
+                    className={`font-display text-[clamp(1.5rem,4.2vw,5rem)] leading-[1.1] tracking-[0.01em] uppercase transition-colors duration-300 break-words ${
                       isOpen
                         ? "text-orange"
                         : "text-milk group-hover:text-orange"

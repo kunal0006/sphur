@@ -215,7 +215,7 @@ export default function Nav() {
                       <span className="font-mono text-xs text-orange">
                         {link.number}
                       </span>
-                      <span className="font-display text-3xl sm:text-4xl tracking-tight uppercase">
+                      <span className="font-display text-3xl sm:text-4xl tracking-[0.01em] leading-normal uppercase">
                         {link.label}
                       </span>
                     </div>

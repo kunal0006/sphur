@@ -144,7 +144,7 @@ export default function Process() {
           </div>
           <span
             ref={activeNumberRef}
-            className="font-display text-ink leading-none tracking-[-0.03em] select-none"
+            className="font-display text-ink leading-none tracking-normal select-none"
             style={{ fontSize: "clamp(8rem, 20vw, 22rem)" }}
           >
             01
@@ -164,7 +164,7 @@ export default function Process() {
           <div className="md:hidden mb-8">
             <h2
               id="process-heading"
-              className="font-display text-ink leading-[0.85] tracking-[-0.03em] uppercase text-4xl"
+              className="font-display text-ink leading-[1.08] tracking-[0.01em] uppercase text-4xl"
             >
               How We Work
             </h2>
@@ -185,7 +185,7 @@ export default function Process() {
                 </span>
               </div>
 
-              <h3 className="font-display text-ink text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.85] tracking-[-0.03em] uppercase">
+              <h3 className="font-display text-ink text-[clamp(2.2rem,5vw,4.5rem)] leading-[1.08] tracking-[0.01em] uppercase">
                 {step.title}
               </h3>
               <p className="font-body text-ink/70 text-base md:text-lg leading-[1.65] max-w-[48ch]">

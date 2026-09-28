@@ -102,7 +102,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display uppercase tracking-tight text-milk mb-6 select-none max-w-5xl text-[1.65rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.2rem]"
+            className="font-display uppercase tracking-[0.01em] text-milk mb-6 select-none max-w-5xl text-[1.65rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.2rem]"
           >
             <span className="block leading-[1.05]">
               One Team.{" "}
@@ -199,7 +199,7 @@ export default function ServicesPage() {
                       </span>
                     </div>
 
-                    <h3 className="font-display text-2xl sm:text-3xl text-milk uppercase tracking-tight mb-3 group-hover:text-orange transition-colors">
+                    <h3 className="font-display text-2xl sm:text-3xl text-milk uppercase tracking-[0.01em] leading-[1.15] mb-3 group-hover:text-orange transition-colors">
                       {service.title}
                     </h3>
 
@@ -266,7 +266,7 @@ export default function ServicesPage() {
               </span>
 
               <h2
-                className="font-display uppercase tracking-tight text-milk mb-4 leading-none"
+                className="font-display uppercase tracking-[0.01em] text-milk mb-4 leading-[1.1]"
                 style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
               >
                 Not sure what you need?
@@ -342,7 +342,7 @@ export default function ServicesPage() {
                   <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-orange/20 border border-orange flex items-center justify-center text-orange text-2xl">
                     ✓
                   </div>
-                  <h3 className="font-display text-2xl text-milk uppercase mb-2">
+                  <h3 className="font-display text-2xl text-milk uppercase tracking-[0.01em] leading-[1.15] mb-2">
                     Brief Received!
                   </h3>
                   <p className="font-space text-milk/75 text-sm leading-relaxed mb-6">
@@ -372,7 +372,7 @@ export default function ServicesPage() {
                       {activeModal === "event" && "// EVENT BRIEF FORM"}
                       {activeModal === "audit" && "// COMPLIMENTARY REVIEW"}
                     </span>
-                    <h3 className="font-display text-2xl sm:text-3xl text-milk uppercase tracking-tight">
+                    <h3 className="font-display text-2xl sm:text-3xl text-milk uppercase tracking-[0.01em] leading-[1.15]">
                       {activeModal === "talent" && "Request Talent"}
                       {activeModal === "event" && "Plan Your Event"}
                       {activeModal === "audit" && "Request Free Brand Audit"}

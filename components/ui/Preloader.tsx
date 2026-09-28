@@ -60,7 +60,7 @@ export default function Preloader() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-milk uppercase tracking-[-0.04em] text-[clamp(3rem,12vw,8rem)] leading-none select-none"
+              className="text-milk uppercase tracking-[-0.02em] text-[clamp(3rem,12vw,8rem)] leading-none select-none"
               style={{
                 fontFamily: "var(--font-montserrat), sans-serif",
                 fontWeight: 900,
