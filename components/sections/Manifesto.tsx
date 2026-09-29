@@ -123,10 +123,10 @@ export default function Manifesto() {
         <h2
           ref={headlineRef}
           id="brand-statement-heading"
-          className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-milk tracking-tight leading-[1.08] select-none"
+          className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-milk uppercase tracking-[0.01em] leading-[1.08] select-none"
         >
           We make brands{" "}
-          <span className="italic text-orange font-normal">impossible</span>{" "}
+          <span className="text-orange">impossible</span>{" "}
           to ignore.
         </h2>
 
